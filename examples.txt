@@ -1,0 +1,41 @@
+Examples
+========
+
+This example is based in [the official examples][1].  The code and
+files necessary for this example are included in the directory
+`/examples`.
+
+Indexing a reference genome
+---------------------------
+
+To create an index for the [Lambda phage][2] reference genome included
+with Bowtie 2:
+
+    $ docker run -it -v $(pwd):/data bowtie-sci-app bowtie2-build \
+        /examples/reference/lambda_virus.fa lambda_virus
+
+The command should print many lines of output then quit. When the
+command completes, the current directory will contain four new files
+that all start with `lambda_virus` and end with `.1.bt2`, `.2.bt2`,
+`.3.bt2`, `.4.bt2`, `.rev.1.bt2`, and `.rev.2.bt2`. These files
+constitute the index.
+
+Next, run:
+
+    $ docker run -it -v $(pwd):/data bowtie-sci-app bowtie2 \
+        -x lambda_virus -U /examples/reads/reads_1.fq -S eg1.sam
+
+This runs the Bowtie 2 aligner, which aligns a set of unpaired reads
+to the Lambda phage reference genome using the index generated in the
+previous step. The alignment results in SAM format are written to the
+file eg1.sam, and a short alignment summary is written to the
+console. (Actually, the summary is written to the "standard error" or
+"stderr" filehandle, which is typically printed to the console.)
+
+To see the first few lines of the SAM output, run:
+
+    $ head eg1.sam
+
+
+[1]: https://github.com/tlhunter/consumer-centric-api-design
+[2]: http://en.wikipedia.org/wiki/Lambda_phage

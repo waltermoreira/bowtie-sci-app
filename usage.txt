@@ -1,0 +1,10 @@
+Usage
+=====
+
+- To see usage of `bowtie2`:
+
+        $ docker run -it bowtie-sci-app bowtie2 -h
+
+- To see usage of `bowtie2-build`:
+
+        $ docker run -it bowtie-sci-app bowtie2-build -h
