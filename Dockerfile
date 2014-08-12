@@ -20,7 +20,6 @@ RUN unzip bowtie2-2.2.3-linux-x86_64.zip && \
     ln -s /bowtie2/example /examples && \
     ln -s /bowtie2/MANUAL /docs/bowtie2/intro.txt
 
-VOLUME /data
 WORKDIR /data
 
 ENV EXTRA_PATH /bowtie2
